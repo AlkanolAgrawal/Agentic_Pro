@@ -28,5 +28,12 @@ class LoadStreamlitUI:
                     st.warning("GROQ API Key is required for GROQ LLM.")
             
             self.user_controls["selected_usecase"] = st.selectbox("Select Use Case", usecase_options)
+
+            if self.user_controls["selected_usecase"] == "Super ChatBot(integrated with tools)":
+                self.user_controls["TAVILY_API_KEY"] = st.session_state["TAVILY_API_KEY"] = st.text_input("Enter your TAVILY API Key", type="password", key="tavily_api_key")
+                if not self.user_controls['TAVILY_API_KEY']:
+                    st.warning("TAVILY API Key is required for Super ChatBot use case.")
+        
+        
         print(self.user_controls)
         return self.user_controls
